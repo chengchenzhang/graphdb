@@ -96,7 +96,7 @@ class D_graph():
 
 	def v(self, args):
 		query = Query(self)
-		query.add('vertex', *args])
+		query.add('vertex', *args)
 		return query
 #Query system
 
@@ -122,6 +122,19 @@ def addPipetype(name, fun):
 	Pipetypes[name] = fun
 	def q_fun(query, args):
 		return query.add(name,*args)
+
+def getPipetype(name):
+	if name in Pipetype:
+		return Pipetype[name]
+	else:
+		print("Unrecognized Pipetype: ", name)
+		return fauxPipeType
+
+def fauxPipeType(a, b, maybe_gremlin):
+	if maybe_gremlin != None:
+		return maybe_gremlin
+	else:
+		return 'pull'
 
 
 #run this part
